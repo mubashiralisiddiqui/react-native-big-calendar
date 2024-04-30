@@ -3,7 +3,7 @@ import 'dayjs/locale/ja'
 import { storiesOf } from '@storybook/react'
 import dayjs from 'dayjs'
 import React from 'react'
-import { Alert, Dimensions, View } from 'react-native'
+import { Alert, Dimensions, View, Text } from 'react-native'
 
 import { Calendar, ICalendarEventBase } from '../src'
 import { CONTROL_HEIGHT, Control } from './components/Control'
@@ -27,6 +27,11 @@ storiesOf('showcase - Desktop', module)
   .add('day mode', () => (
     <View style={styles.desktop}>
       <Calendar
+        // allDayComponent={()=>{
+        //   return(
+        //     <View><Text>test</Text></View>
+        //   )
+        // }}
         height={SCREEN_HEIGHT}
         events={events}
         onPressEvent={(event) => alert(event.title)}

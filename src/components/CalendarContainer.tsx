@@ -141,6 +141,7 @@ export interface CalendarContainerProps<T extends ICalendarEventBase> {
   allDayLabelTextStyle?: TextStyle
   allDayLabel?: string
   allDayLabelContainerStyle?: ViewStyle
+  allDayComponent?: React.ComponentType<any> | null | undefined
 }
 
 function _CalendarContainer<T extends ICalendarEventBase>({
@@ -203,6 +204,7 @@ function _CalendarContainer<T extends ICalendarEventBase>({
   allDayLabelTextStyle,
   allDayLabel = '',
   allDayLabelContainerStyle,
+  allDayComponent,
 }: CalendarContainerProps<T>) {
   // To ensure we have proper effect callback, use string to date comparision.
   const dateString = date?.toString()
@@ -356,6 +358,7 @@ function _CalendarContainer<T extends ICalendarEventBase>({
     allDayLabel,
     allDayLabelTextStyle,
     allDayLabelContainerStyle,
+    allDayComponent,
   }
 
   if (mode === 'schedule') {

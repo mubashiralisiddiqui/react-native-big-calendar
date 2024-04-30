@@ -30,6 +30,7 @@ export interface CalendarHeaderProps<T extends ICalendarEventBase> {
   allDayLabel?: string
   allDayLabelContainerStyle?: ViewStyle
   allDayLabelTextStyle?: TextStyle
+  allDayComponent?: any
 }
 
 function _CalendarHeader<T extends ICalendarEventBase>({
@@ -53,6 +54,7 @@ function _CalendarHeader<T extends ICalendarEventBase>({
   allDayLabel = 'All day',
   allDayLabelContainerStyle,
   allDayLabelTextStyle,
+  allDayComponent,
 }: CalendarHeaderProps<T>) {
   const _onPressHeader = React.useCallback(
     (date: Date) => {
@@ -222,7 +224,9 @@ function _CalendarHeader<T extends ICalendarEventBase>({
                     typeof allDayEventCellStyle === 'function'
                       ? allDayEventCellStyle
                       : () => allDayEventCellStyle
-
+                  if (allDayComponent && typeof allDayComponent === 'function') {
+                    return allDayComponent()
+                  }
                   return (
                     <TouchableOpacity
                       style={[eventCellCss.style, primaryBg, u['mt-2'], getEventStyle(event)]}
