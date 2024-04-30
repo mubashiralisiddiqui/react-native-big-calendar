@@ -1,6 +1,6 @@
 import dayjs from 'dayjs'
 import * as React from 'react'
-import { Platform, Text, TouchableOpacity, View, ViewStyle } from 'react-native'
+import { Platform, Text, TouchableOpacity, View, ViewStyle, TextStyle } from 'react-native'
 
 import { eventCellCss, u } from '../commonStyles'
 import { ICalendarEventBase } from '../interfaces'
@@ -26,6 +26,10 @@ export interface CalendarHeaderProps<T extends ICalendarEventBase> {
   hideHours?: Boolean
   showWeekNumber?: boolean
   weekNumberPrefix?: string
+  allDayEventContainerStyle?: ViewStyle
+  allDayLabel?: string
+  allDayLabelContainerStyle?: ViewStyle
+  allDayLabelTextStyle?: TextStyle
 }
 
 function _CalendarHeader<T extends ICalendarEventBase>({
@@ -45,6 +49,10 @@ function _CalendarHeader<T extends ICalendarEventBase>({
   hideHours = false,
   showWeekNumber = false,
   weekNumberPrefix = '',
+  allDayEventContainerStyle = {},
+  allDayLabel = 'All day',
+  allDayLabelContainerStyle,
+  allDayLabelTextStyle,
 }: CalendarHeaderProps<T>) {
   const _onPressHeader = React.useCallback(
     (date: Date) => {
@@ -75,7 +83,19 @@ function _CalendarHeader<T extends ICalendarEventBase>({
       ]}
     >
       {(!hideHours || showWeekNumber) && (
-        <View style={[u['z-10'], u['w-50'], u['pt-2'], borderColor]}>
+        <View style={[u['z-10'], u['w-50'], u['pt-2'], borderColor, allDayLabelContainerStyle]}>
+          <View style={[allDayLabelContainerStyle]}>
+            <Text
+              style={[
+                {
+                  fontSize: theme.typography.sm.fontSize,
+                },
+                allDayLabelTextStyle,
+              ]}
+            >
+              {allDayLabel}
+            </Text>
+          </View>
           {showWeekNumber ? (
             <View
               style={[
@@ -190,6 +210,7 @@ function _CalendarHeader<T extends ICalendarEventBase>({
                   u['border-l'],
                   { borderColor: theme.palette.gray['200'] },
                   { height: cellHeight },
+                  allDayEventContainerStyle,
                 ]}
               >
                 {allDayEvents.map((event, index) => {

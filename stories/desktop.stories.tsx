@@ -32,6 +32,16 @@ storiesOf('showcase - Desktop', module)
         onPressEvent={(event) => alert(event.title)}
         onPressCell={() => void 0}
         mode="day"
+        allDayEventContainerStyle={{ borderLeftWidth: 0 }}
+        allDayEventCellStyle={{ width: '80%', justifyContent: 'center', height: 50 }}
+        allDayLabelContainerStyle={{
+          justifyContent: 'center',
+          backgroundColor: 'red',
+          height: 50,
+          alignSelf: 'flex-end',
+          width: 80,
+        }}
+        allDayLabel="All day"
       />
     </View>
   ))

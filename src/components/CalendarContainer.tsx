@@ -137,6 +137,10 @@ export interface CalendarContainerProps<T extends ICalendarEventBase> {
    * Default value is `false`.
    */
   eventsAreSorted?: boolean
+  allDayEventContainerStyle?: ViewStyle
+  allDayLabelTextStyle?: TextStyle
+  allDayLabel?: string
+  allDayLabelContainerStyle?: ViewStyle
 }
 
 function _CalendarContainer<T extends ICalendarEventBase>({
@@ -195,6 +199,10 @@ function _CalendarContainer<T extends ICalendarEventBase>({
   enableEnrichedEvents = false,
   eventsAreSorted = false,
   onSwipeEnd,
+  allDayEventContainerStyle,
+  allDayLabelTextStyle,
+  allDayLabel = '',
+  allDayLabelContainerStyle,
 }: CalendarContainerProps<T>) {
   // To ensure we have proper effect callback, use string to date comparision.
   const dateString = date?.toString()
@@ -344,6 +352,10 @@ function _CalendarContainer<T extends ICalendarEventBase>({
     weekDayHeaderHighlightColor: weekDayHeaderHighlightColor,
     showAllDayEventCell: showAllDayEventCell,
     weekNumberPrefix: weekNumberPrefix,
+    allDayEventContainerStyle,
+    allDayLabel,
+    allDayLabelTextStyle,
+    allDayLabelContainerStyle,
   }
 
   if (mode === 'schedule') {

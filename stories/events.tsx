@@ -15,8 +15,14 @@ const eventNotes = (
     <Text style={{ fontSize: 10, color: 'white' }}> Arrive 15 minutes early </Text>
   </View>
 )
+const monday = dayjs().day(2)
 
 export const events: Array<ICalendarEventBase & { color?: string }> = [
+  {
+    title: 'Holiday',
+    start: monday.set('hour', 0).set('minute', 0).toDate(),
+    end: monday.set('hour', 0).set('minute', 0).toDate(),
+  },
   {
     title: 'Watch Boxing',
     start: dayjs().set('hour', 0).set('minute', 0).set('second', 0).toDate(),
