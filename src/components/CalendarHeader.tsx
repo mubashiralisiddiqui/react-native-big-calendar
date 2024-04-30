@@ -87,16 +87,18 @@ function _CalendarHeader<T extends ICalendarEventBase>({
       {(!hideHours || showWeekNumber) && (
         <View style={[u['z-10'], u['w-50'], u['pt-2'], borderColor, allDayLabelContainerStyle]}>
           <View style={[allDayLabelContainerStyle]}>
-            <Text
-              style={[
-                {
-                  fontSize: theme.typography.sm.fontSize,
-                },
-                allDayLabelTextStyle,
-              ]}
-            >
-              {allDayLabel}
-            </Text>
+            {showAllDayEventCell && (
+              <Text
+                style={[
+                  {
+                    fontSize: theme.typography.sm.fontSize,
+                  },
+                  allDayLabelTextStyle,
+                ]}
+              >
+                {allDayLabel}
+              </Text>
+            )}
           </View>
           {showWeekNumber ? (
             <View

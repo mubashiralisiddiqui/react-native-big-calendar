@@ -27,6 +27,7 @@ storiesOf('showcase - Desktop', module)
   .add('day mode', () => (
     <View style={styles.desktop}>
       <Calendar
+        showAllDayEventCell={false}
         allDayComponent={(event) => {
           console.log('Eventtttt', event)
           return (
@@ -44,7 +45,6 @@ storiesOf('showcase - Desktop', module)
         allDayEventCellStyle={{ width: '80%', justifyContent: 'center', height: 50 }}
         allDayLabelContainerStyle={{
           justifyContent: 'center',
-          backgroundColor: 'red',
           height: 50,
           alignSelf: 'flex-end',
           width: 80,
