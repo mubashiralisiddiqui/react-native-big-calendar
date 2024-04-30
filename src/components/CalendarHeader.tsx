@@ -225,7 +225,7 @@ function _CalendarHeader<T extends ICalendarEventBase>({
                       ? allDayEventCellStyle
                       : () => allDayEventCellStyle
                   if (allDayComponent && typeof allDayComponent === 'function') {
-                    return allDayComponent()
+                    return allDayComponent(event)
                   }
                   return (
                     <TouchableOpacity

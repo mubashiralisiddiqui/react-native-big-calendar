@@ -27,11 +27,14 @@ storiesOf('showcase - Desktop', module)
   .add('day mode', () => (
     <View style={styles.desktop}>
       <Calendar
-        // allDayComponent={()=>{
-        //   return(
-        //     <View><Text>test</Text></View>
-        //   )
-        // }}
+        allDayComponent={(event) => {
+          console.log('Eventtttt', event)
+          return (
+            <View>
+              <Text> {event?.title}</Text>
+            </View>
+          )
+        }}
         height={SCREEN_HEIGHT}
         events={events}
         onPressEvent={(event) => alert(event.title)}
