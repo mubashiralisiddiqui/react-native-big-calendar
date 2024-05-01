@@ -217,7 +217,7 @@ function _CalendarHeader<T extends ICalendarEventBase>({
                       u['mt-6'],
                   ]}
                 >
-                  {date.format('D')}
+                  {date.format('DD')}
                 </Text>
               </View>
             </View>
