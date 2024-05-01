@@ -81,15 +81,14 @@ function _CalendarHeader<T extends ICalendarEventBase>({
       console.log('dateToCheck', dateToCheck)
       return allDayEvents.some((event: any) => {
         const eventStart = dayjs(event.start)
-        console.log('activeDateee', activeDate)
         if (eventStart.isSame(dateToCheck, 'day')) {
           return true // If the event's start date is the same as dateToCheck, return true
         }
         return false
       })
     }
+    return false
   }
-  console.log('activeDatetyui', activeDate)
   return (
     <View
       style={[
