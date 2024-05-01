@@ -27,7 +27,7 @@ storiesOf('showcase - Desktop', module)
   .add('day mode', () => (
     <View style={styles.desktop}>
       <Calendar
-        showAllDayEventCell={false}
+        showAllDayEventCell={true}
         allDayComponent={(event) => {
           console.log('Eventtttt', event)
           return (

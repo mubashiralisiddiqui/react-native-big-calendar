@@ -75,6 +75,21 @@ function _CalendarHeader<T extends ICalendarEventBase>({
   const borderColor = { borderColor: theme.palette.gray['200'] }
   const primaryBg = { backgroundColor: theme.palette.primary.main }
 
+  const isDateIncluded = () => {
+    if (dateRange && dateRange[0]) {
+      const dateToCheck = dateRange[0]
+      console.log('dateToCheck', dateToCheck)
+      return allDayEvents.some((event: any) => {
+        const eventStart = dayjs(event.start)
+        console.log('activeDateee', activeDate)
+        if (eventStart.isSame(dateToCheck, 'day')) {
+          return true // If the event's start date is the same as dateToCheck, return true
+        }
+        return false
+      })
+    }
+  }
+  console.log('activeDatetyui', activeDate)
   return (
     <View
       style={[
@@ -87,7 +102,7 @@ function _CalendarHeader<T extends ICalendarEventBase>({
       {(!hideHours || showWeekNumber) && (
         <View style={[u['z-10'], u['w-50'], u['pt-2'], borderColor, allDayLabelContainerStyle]}>
           <View style={[allDayLabelContainerStyle]}>
-            {showAllDayEventCell && (
+            {showAllDayEventCell && isDateIncluded() && (
               <Text
                 style={[
                   {
@@ -139,7 +154,6 @@ function _CalendarHeader<T extends ICalendarEventBase>({
       )}
       {dateRange.map((date) => {
         const shouldHighlight = activeDate ? date.isSame(activeDate, 'date') : isToday(date)
-
         return (
           <TouchableOpacity
             style={[u['flex-1'], u['pt-2']]}
@@ -208,7 +222,8 @@ function _CalendarHeader<T extends ICalendarEventBase>({
                 </Text>
               </View>
             </View>
-            {showAllDayEventCell ? (
+
+            {isDateIncluded() && showAllDayEventCell && allDayEvents?.length > 0 ? (
               <View
                 style={[
                   u['border-l'],
