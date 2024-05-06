@@ -290,13 +290,27 @@ function _CalendarBody<T extends ICalendarEventBase>({
               ))}
               {_renderEvents(date)}
               {isToday(date) && !hideNowIndicator && (
-                <View
-                  style={[
-                    styles.nowIndicator,
-                    { backgroundColor: theme.palette.nowIndicator },
-                    { top: `${getRelativeTopInDay(now)}%` },
-                  ]}
-                />
+                <>
+                  <View
+                    style={[
+                      styles.nowIndicator,
+                      { top: `${getRelativeTopInDay(now)}%` },
+                      {
+                        width: 8,
+                        height: 8,
+                        backgroundColor: theme.palette.nowIndicator,
+                        borderRadius: 100,
+                      },
+                    ]}
+                  />
+                  <View
+                    style={[
+                      styles.nowIndicator,
+                      { backgroundColor: theme.palette.nowIndicator },
+                      { top: `${getRelativeTopInDay(now) + 0.3}%` },
+                    ]}
+                  />
+                </>
               )}
             </View>
           ))}
