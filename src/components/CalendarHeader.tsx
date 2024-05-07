@@ -76,15 +76,18 @@ function _CalendarHeader<T extends ICalendarEventBase>({
   const primaryBg = { backgroundColor: theme.palette.primary.main }
 
   const isDateIncluded = () => {
-    if (dateRange && dateRange[0]) {
-      const dateToCheck = dateRange[0]
-      console.log('dateToCheck', dateToCheck)
-      return allDayEvents.some((event: any) => {
-        const eventStart = dayjs(event.start)
-        if (eventStart.isSame(dateToCheck, 'day')) {
-          return true // If the event's start date is the same as dateToCheck, return true
-        }
-        return false
+    if (dateRange && dateRange.length > 0) {
+      // Check if dateRange exists and is not empty
+      return dateRange.some((dateToCheck) => {
+        // Iterate through each date in dateRange
+        return allDayEvents.some((event: any) => {
+          // Check if any event matches the current date
+          const eventStart = dayjs(event.start)
+          if (eventStart.isSame(dateToCheck, 'day')) {
+            return true // If the event's start date is the same as dateToCheck, return true
+          }
+          return false
+        })
       })
     }
     return false
